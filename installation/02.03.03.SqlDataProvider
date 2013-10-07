@@ -1,0 +1,123 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/************************************************************/
+/*****    TABLE Start                                   *****/
+/************************************************************/
+
+if not exists (select * from dbo.syscolumns where id=object_id(N'{databaseOwner}[{objectQualifier}NB_Store_ShippingMethod]') and name='Dealer')
+ALTER TABLE {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] ADD Dealer bit DEFAULT 1
+GO
+
+if not exists (select * from dbo.syscolumns where id=object_id(N'{databaseOwner}[{objectQualifier}NB_Store_ShippingMethod]') and name='NonDealer')
+ALTER TABLE {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] ADD NonDealer bit DEFAULT 1
+GO
+
+  update {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] set Dealer = 1
+  update {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] set NonDealer = 1
+
+/************************************************************/
+/*****    SPROC Start                                   *****/
+/************************************************************/
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ShippingMethod_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ShippingMethod_Update]
+GO
+
+
+CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ShippingMethod_Update]
+(
+@ShipMethodID int,
+@PortalID int,
+@MethodName nvarchar(50),
+@MethodDesc nvarchar(256),
+@SortOrder int,
+@TemplateName nvarchar(50),
+@Disabled bit,
+@URLtracker nvarchar(256),
+@Dealer bit,
+@NonDealer bit
+)
+AS
+BEGIN
+
+	if not exists (select ShipMethodID,PortalID from {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] where ShipMethodID = @ShipMethodID
+ )
+	begin
+		insert into {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod]
+		(
+		PortalID,
+		MethodName,
+		MethodDesc,
+		SortOrder,
+		TemplateName,
+		[Disabled],
+		URLtracker,
+		Dealer,
+		NonDealer
+		)
+		values
+		(
+		@PortalID,
+		@MethodName,
+		@MethodDesc,
+		@SortOrder,
+		@TemplateName,
+		@Disabled,
+		@URLtracker,
+		@Dealer,
+		@NonDealer
+		)
+
+		set @ShipMethodID = @@IDENTITY
+
+	end
+	else
+	begin
+		Update {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod]
+		set 
+		PortalID = @PortalID,
+		MethodName = @MethodName,
+		MethodDesc = @MethodDesc,
+		SortOrder = @SortOrder,
+		TemplateName = @TemplateName,
+		[Disabled] = @Disabled,
+		URLtracker = @URLtracker,
+		Dealer = @Dealer,
+		NonDealer = @NonDealer
+		where ShipMethodID = @ShipMethodID 
+	end
+
+	select @ShipMethodID
+
+END
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+/************************************************************/
+ 

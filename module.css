@@ -1,0 +1,20 @@
+﻿/* NB_Store */
+.NBright_ButtonDiv{text-align:left;}
+.NBright_MenuDiv .NBright_ButtonDiv{margin:12px;}
+.NBright_NormalTextBox{margin-right:8px;Width:144px;}
+.NBright_ContentDiv{width:100%;}
+.NBright_ContentDiv td{padding:4px;}
+.NBright_ContentDiv input[type=text], .NBright_ContentDiv select, .NBright_ContentDiv textarea{border:1px solid #AAAAAA;}
+.NBright_HeaderStyle{background:#F5F5F5;border-bottom:1px solid #D7D7D7;border-top:1px solid #D7D7D7;font-size:13px;font-weight:bold;height:30px;}
+.NBright_FooterStyle{font-weight:bold;background-color:#f3f6f8;}
+.NBright_EditItemStyle{font-weight:normal;background-color:#E7EAED;}
+.NBright_SelectedItemStyle{color:#333333;font-weight:bold;background-color:#E2DED6;}
+.NBright_PagerStyle{background:#F5F5F5;border-bottom:1px solid #D7D7D7;border-top:1px solid #D7D7D7;font-size:13px;font-weight:bold;height:30px;text-align:center;}
+.NBright_AlternatingItemStyle{color:#777777;font-weight:bold;background-color:#f3f6f8;}
+.NBright_ItemStyle{color:#777777;font-weight:bold;background-color:white;}
+.NBright_SelectDiv, .NBright_ActionDiv{text-align:left;padding:10px 0;font-weight:bold;}
+.SpecialInstructions{width:450px;height:45px;font-family:inherit;}
+.NBright_CartOptDiv .Label{display:inline-block;min-width:110px;vertical-align:top;white-space:nowrap;}
+.NBright_CartOptDiv .ShippingMethods{display:inline-block;}
+.mspsContent select, .mspsContent textarea, .mspsContent input[type=text]{margin-right:5px;padding:8px;margin-bottom:6px;border:1px solid #C9C9C9;border-radius:3px;}
+.mspsContent textarea{font-family:monospace;font-size:13px;}

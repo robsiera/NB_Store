@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<content type="NBStoreBackOffice" version="02.03.02">
+<storecontent>
+<orderactions>
+<ID10 Lang="XX"><![CDATA[Created]]></ID10>
+<ID20 Lang="XX"><![CDATA[Cancelled]]></ID20>
+<ID30 Lang="XX"><![CDATA[Emails to manager and customer sent]]></ID30>
+<ID40 Lang="XX"><![CDATA[Status Change]]></ID40>
+<ID50 Lang="XX"><![CDATA[Validation email sent]]></ID50>
+<ID60 Lang="XX"><![CDATA[Shipping email sent]]></ID60>
+<ID70 Lang="XX"><![CDATA[Amended email sent]]></ID70>
+<ID80 Lang="XX"><![CDATA[Receipt email sent]]></ID80>
+<ID90 Lang="XX"><![CDATA[Order amended]]></ID90>
+<ID10 Lang="fr-FR"><![CDATA[Créé]]></ID10>
+<ID20 Lang="fr-FR"><![CDATA[Annulé]]></ID20>
+<ID30 Lang="fr-FR"><![CDATA[E-mails envoyés au manager et au client]]></ID30>
+<ID40 Lang="fr-FR"><![CDATA[Statut modifié]]></ID40>
+<ID50 Lang="fr-FR"><![CDATA[E-mail validation commande envoyé]]></ID50>
+<ID60 Lang="fr-FR"><![CDATA[E-mail livraison envoyé]]></ID60>
+<ID70 Lang="fr-FR"><![CDATA[E-mail commande modifiée envoyé]]></ID70>
+<ID80 Lang="fr-FR"><![CDATA[E-mail du reçu envoyé]]></ID80>
+<ID90 Lang="fr-FR"><![CDATA[Commande modifiée]]></ID90>
+</orderactions>
+</storecontent>
+</content>
+
+
+

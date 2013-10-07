@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plHideVAT.Text" xml:space="preserve">
+    <value>Hide VAT Code Field</value>
+  </data>
+  <data name="plHideVAT.Help" xml:space="preserve">
+    <value>Hide the International VAT code input field.</value>
+  </data>
+  <data name="plHidePromo.Text" xml:space="preserve">
+    <value>Hide Promotion Code Field</value>
+  </data>
+  <data name="plHidePromo.Help" xml:space="preserve">
+    <value>Hides the Promotion Code input field.</value>
+  </data>
+  <data name="plHideChq.Text" xml:space="preserve">
+    <value>Hide Manual Payment Button</value>
+  </data>
+  <data name="plHideChq.Help" xml:space="preserve">
+    <value>Hides the manual payment link and image button</value>
+  </data>
+  <data name="plStockChq.Text" xml:space="preserve">
+    <value>Remove Stock on Manual Payment</value>
+  </data>
+  <data name="plStockChq.Help" xml:space="preserve">
+    <value>Stock will be removed instantly when purchased by manual payment methods.</value>
+  </data>
+  <data name="plHideShip.Text" xml:space="preserve">
+    <value>Hide No Shipping Button</value>
+  </data>
+  <data name="plHideShip.Help" xml:space="preserve">
+    <value>Hides the no shipping radio button option on the address collector page. </value>
+  </data>
+  <data name="plGateway.Text" xml:space="preserve">
+    <value>Payment Gateway</value>
+  </data>
+  <data name="plGateway.Help" xml:space="preserve">
+    <value>Select your Bank Gateway Provider</value>
+  </data>
+  <data name="NoGateway.Text" xml:space="preserve">
+    <value>--None--</value>
+  </data>
+  <data name="plChequeGateway.Text" xml:space="preserve">
+    <value>Encapsulated Gateway</value>
+  </data>
+  <data name="plChequeGateway.Help" xml:space="preserve">
+    <value>Select Encapsulated Gateway Provider</value>
+  </data>
+  <data name="plSkipCart.Text" xml:space="preserve">
+    <value>Hide First Cart Page</value>
+  </data>
+  <data name="plSkipCart.Help" xml:space="preserve">
+    <value>Skips the first stage of the checkout and jumps straight to the address collector. </value>
+  </data>
+  <data name="plNonUserOrder.Text" xml:space="preserve">
+    <value>Allow Anonymous Purchasing</value>
+  </data>
+  <data name="plNonUserOrder.Help" xml:space="preserve">
+    <value>This will allow users to make purchases without having to register an account on the website.</value>
+  </data>
+  <data name="plTabList.Text" xml:space="preserve">
+    <value>Cancelled Order Return Tab</value>
+  </data>
+  <data name="plTabList.Help" xml:space="preserve">
+    <value>Tab to return to when an order is cancelled.</value>
+  </data>
+  <data name="plDisableLoginMsg.Text" xml:space="preserve">
+    <value>Hide Login Page</value>
+  </data>
+  <data name="plDisableLoginMsg.Help" xml:space="preserve">
+    <value>Hides the login and register page. Use this when anonymous purchasing is enabled.</value>
+  </data>
+  <data name="plHideCountry.Text" xml:space="preserve">
+    <value>Hide Shipping Country Selector</value>
+  </data>
+  <data name="plHideCountry.Help" xml:space="preserve">
+    <value>Hides the shipping country dropdown selector.</value>
+  </data>
+  <data name="cmdResetDefaults.Text" xml:space="preserve">
+    <value>Reset Defaults</value>
+  </data>
+  <data name="cmdResetDefaultsMsg.Text" xml:space="preserve">
+    <value>This will Reset the settings to the Store Defaults.  Are you sure?</value>
+  </data>
+  <data name="plMinimumValidate.Text" xml:space="preserve">
+    <value>Minimum Validation</value>
+  </data>
+  <data name="plMinimumValidate.Help" xml:space="preserve">
+    <value>If checked the shipping and billing address validation will be turned off.  Only Email Address will be validated.</value>
+  </data>
+  <data name="plShowShipMethod.Text" xml:space="preserve">
+    <value>Show Shipping Methods</value>
+  </data>
+  <data name="plShowShipMethod.Help" xml:space="preserve">
+    <value>This will display all the shipping methods and allow the customer to select their prefered one.</value>
+  </data>
+  <data name="plShowDiscountCol.Text" xml:space="preserve">
+    <value>Show Discount Column</value>
+  </data>
+  <data name="plShowDiscountCol.Help" xml:space="preserve">
+    <value>If a discount is applied to the cart, this option will show a cart item breadown of discount in a column.</value>
+  </data>
+  <data name="plTabContShop.Text" xml:space="preserve">
+    <value>Continue Shopping Tab</value>
+  </data>
+  <data name="plTabContShop.Help" xml:space="preserve">
+    <value>Tab to return to when the continue shopping button is clicked.</value>
+  </data>
+  <data name="plHideExtraInfo.Text" xml:space="preserve">
+    <value>Hide Special Instructions Field</value>
+  </data>
+  <data name="plHideExtraInfo.Help" xml:space="preserve">
+    <value>Hides the special instructions field on the address collector page.</value>
+  </data>
+  <data name="plShowStageHeader.Text" xml:space="preserve">
+    <value>Show Checkout Steps</value>
+  </data>
+  <data name="plShowStageHeader.Help" xml:space="preserve">
+    <value>Displays checkout steps above the checkout.</value>
+  </data>
+  <data name="plHideShipInCart.Text" xml:space="preserve">
+    <value>Hide Shipping Cost</value>
+  </data>
+  <data name="plHideShipInCart.Help" xml:space="preserve">
+    <value>Hides the shipping calculation line in the cart.</value>
+  </data>
+  <data name="plSmoothLogin.Text" xml:space="preserve">
+    <value>Smooth Login</value>
+  </data>
+  <data name="plSmoothLogin.Help" xml:space="preserve">
+    <value>Smooth login will skip the login and regiatrion page and instead load the login box immediately.</value>
+  </data>
+  <data name="plSmoothLoginTab.Text" xml:space="preserve">
+    <value>Smooth Login Tab</value>
+  </data>
+  <data name="plSmoothLoginTab.Help" xml:space="preserve">
+    <value>Smooth Login causes the login box to load immediately without an iterim page. You can also direct this to your own custom login and/or registration page.</value>
+  </data>
+  <data name="plGatewayDisplay.Text" xml:space="preserve">
+    <value>Gateway Display Method</value>
+  </data>
+  <data name="plGatewayDisplay.Help" xml:space="preserve">
+    <value>Selects which gateway display option will be used on the checkout.  If Template method is selected a template called "gateway.template" will be used to render the display.</value>
+  </data>
+  <data name="GatewayDisplay1.Text" xml:space="preserve">
+    <value>Standard Only</value>
+  </data>
+  <data name="GatewayDisplay2.Text" xml:space="preserve">
+    <value>Template Only</value>
+  </data>
+  <data name="GatewayDisplay3.Text" xml:space="preserve">
+    <value>Both</value>
+  </data>
+</root>

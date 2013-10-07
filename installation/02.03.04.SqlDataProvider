@@ -1,0 +1,72 @@
+﻿
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/************************************************************/
+
+-------------------------------------------------------------------------------
+--------------                       TABLES                        ------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--------------                       SPROCS                        ------------
+-------------------------------------------------------------------------------
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_CartItems_GetCartList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_CartItems_GetCartList]
+GO
+
+
+/*
+Author: DCL
+Last Modified for NB_Store version: 02.03.04
+*/
+CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_CartItems_GetCartList]
+@CartID nvarchar(50)
+AS
+begin
+	select ItemID,
+ItemDesc,
+UnitCost,
+Quantity,
+(Quantity * UnitCost) as SubTotal,
+ProductURL,
+Discount,
+XMLInfo,
+StaticAmts,
+ModelId,
+OptCode
+	from {databaseOwner}[{objectQualifier}NB_Store_CartItems] 
+	where CartID = @CartID
+end
+
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+-------------------------------------------------------------------------------
+--------------                       P.Keys                        ------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--------------                       F.Keys                        ------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--------------                       Indexes                       ------------
+-------------------------------------------------------------------------------
+

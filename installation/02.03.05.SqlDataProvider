@@ -1,0 +1,426 @@
+﻿
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/************************************************************/
+
+-------------------------------------------------------------------------------
+--------------                       TABLES                        ------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--------------                       SPROCS                        ------------
+-------------------------------------------------------------------------------
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]
+GO
+
+
+
+
+
+/*
+Author: DCL
+Last Modified for NB_Store version: 02.01.00
+*/
+CREATE  PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]
+(
+@RelatedID int,
+@PortalID int,
+@ProductID int,
+@RelatedProductID int,
+@DiscountAmt numeric(16,2),
+@DiscountPercent numeric(16,2),
+@ProductQty int,
+@MaxQty int,
+@RelatedType int,
+@Disabled bit,
+@NotAvailable bit,
+@BiDirectional bit
+)
+AS
+BEGIN
+
+-- Check to see if the related product is not the same
+if @ProductID != @RelatedProductID
+begin
+
+	if not exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] where RelatedID = @RelatedID)
+	begin
+
+	-- Check to see if the related product already exists, if it does don't create it again.
+	if not exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+					where PortalID = @PortalID
+					and ProductID = @ProductID
+					and RelatedProductID = 	@RelatedProductID
+	)
+	begin
+
+
+		insert into {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		(
+		PortalID,
+		ProductID,
+		RelatedProductID,
+		DiscountAmt,
+		DiscountPercent,
+		ProductQty,
+		MaxQty,
+		RelatedType,
+		Disabled,
+		NotAvailable,
+		BiDirectional
+		)
+		values
+		(
+		@PortalID,
+		@ProductID,
+		@RelatedProductID,
+		@DiscountAmt,
+		@DiscountPercent,
+		@ProductQty,
+		@MaxQty,
+		@RelatedType,
+		@Disabled,
+		@NotAvailable,
+		@BiDirectional
+
+		)
+
+		---------------------------------------------------------
+		-- First Insert so create Bi-Directional update 
+		---------------------------------------------------------
+
+		insert into {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		(
+		PortalID,
+		ProductID,
+		RelatedProductID,
+		DiscountAmt,
+		DiscountPercent,
+		ProductQty,
+		MaxQty,
+		RelatedType,
+		Disabled,
+		NotAvailable,
+		BiDirectional
+		)
+		values
+		(
+		@PortalID,
+		@RelatedProductID,
+		@ProductID,
+		@DiscountAmt,
+		@DiscountPercent,
+		@ProductQty,
+		@MaxQty,
+		@RelatedType,
+		@Disabled,
+		@NotAvailable,
+		@BiDirectional
+		)
+
+	end
+	end
+	else
+	begin
+
+		Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		set 
+		DiscountAmt = @DiscountAmt,
+		DiscountPercent = @DiscountPercent,
+		ProductQty = @ProductQty,
+		MaxQty = @MaxQty,
+		RelatedType = @RelatedType,
+		Disabled = @Disabled,
+		NotAvailable = @NotAvailable,
+		BiDirectional = @BiDirectional
+		where RelatedID = @RelatedID
+ 
+		---------------------------------------------------------
+		-- Do Bi-Directional update 
+		---------------------------------------------------------
+		if @BiDirectional = 1 
+		begin
+		-- Bi-Directional Relation, so update the other side
+
+			if exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+			where PortalID = @PortalID
+			and ProductID = @RelatedProductID
+			and RelatedProductID = 	@ProductID)
+			begin
+				Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+				set 
+				DiscountAmt = @DiscountAmt,
+				DiscountPercent = @DiscountPercent,
+				ProductQty = @ProductQty,
+				MaxQty = @MaxQty,
+				RelatedType = @RelatedType,
+				--Disabled = @Disabled,  -- Don't disable other side, if this side is disabled
+				NotAvailable = @NotAvailable,
+				BiDirectional = @BiDirectional
+				where PortalID = @PortalID
+				and ProductID = @RelatedProductID
+				and RelatedProductID = 	@ProductID
+		 
+			end
+
+		end
+
+	---------------------------------------------------------
+		if @BiDirectional = 0 AND @Disabled = 0
+		begin
+		-- Bi-Directional Relation Disable, so Disable the other side
+
+			if exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+			where PortalID = @PortalID
+			and ProductID = @RelatedProductID
+			and RelatedProductID = 	@ProductID)
+			begin
+				Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+				set 
+				DiscountAmt = @DiscountAmt,
+				DiscountPercent = @DiscountPercent,
+				ProductQty = @ProductQty,
+				MaxQty = @MaxQty,
+				RelatedType = @RelatedType,
+				Disabled = 1,
+				NotAvailable = @NotAvailable,
+				BiDirectional = @BiDirectional
+					where PortalID = @PortalID
+					and ProductID = @RelatedProductID
+					and RelatedProductID = 	@ProductID		 
+			end
+		end
+end
+end
+END
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+-------------------------------------------------------------------------------
+--------------                       TABLES                        ------------
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--------------                       SPROCS                        ------------
+-------------------------------------------------------------------------------
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]
+GO
+
+
+
+
+
+/*
+Author: DCL
+Last Modified for NB_Store version: 02.01.00
+*/
+CREATE  PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ProductRelated_Update]
+(
+@RelatedID int,
+@PortalID int,
+@ProductID int,
+@RelatedProductID int,
+@DiscountAmt numeric(16,2),
+@DiscountPercent numeric(16,2),
+@ProductQty int,
+@MaxQty int,
+@RelatedType int,
+@Disabled bit,
+@NotAvailable bit,
+@BiDirectional bit
+)
+AS
+BEGIN
+
+-- Check to see if the related product is not the same
+if @ProductID != @RelatedProductID
+begin
+
+	if not exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] where RelatedID = @RelatedID)
+	begin
+
+	-- Check to see if the related product already exists, if it does don't create it again.
+	if not exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+					where PortalID = @PortalID
+					and ProductID = @ProductID
+					and RelatedProductID = 	@RelatedProductID
+	)
+	begin
+
+
+		insert into {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		(
+		PortalID,
+		ProductID,
+		RelatedProductID,
+		DiscountAmt,
+		DiscountPercent,
+		ProductQty,
+		MaxQty,
+		RelatedType,
+		Disabled,
+		NotAvailable,
+		BiDirectional
+		)
+		values
+		(
+		@PortalID,
+		@ProductID,
+		@RelatedProductID,
+		@DiscountAmt,
+		@DiscountPercent,
+		@ProductQty,
+		@MaxQty,
+		@RelatedType,
+		@Disabled,
+		@NotAvailable,
+		@BiDirectional
+
+		)
+
+		---------------------------------------------------------
+		-- First Insert so create Bi-Directional update 
+		---------------------------------------------------------
+
+		insert into {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		(
+		PortalID,
+		ProductID,
+		RelatedProductID,
+		DiscountAmt,
+		DiscountPercent,
+		ProductQty,
+		MaxQty,
+		RelatedType,
+		Disabled,
+		NotAvailable,
+		BiDirectional
+		)
+		values
+		(
+		@PortalID,
+		@RelatedProductID,
+		@ProductID,
+		@DiscountAmt,
+		@DiscountPercent,
+		@ProductQty,
+		@MaxQty,
+		@RelatedType,
+		@Disabled,
+		@NotAvailable,
+		@BiDirectional
+		)
+
+	end
+	end
+	else
+	begin
+
+		Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+		set 
+		DiscountAmt = @DiscountAmt,
+		DiscountPercent = @DiscountPercent,
+		ProductQty = @ProductQty,
+		MaxQty = @MaxQty,
+		RelatedType = @RelatedType,
+		Disabled = @Disabled,
+		NotAvailable = @NotAvailable,
+		BiDirectional = @BiDirectional
+		where RelatedID = @RelatedID
+ 
+		---------------------------------------------------------
+		-- Do Bi-Directional update 
+		---------------------------------------------------------
+		if @BiDirectional = 1 
+		begin
+		-- Bi-Directional Relation, so update the other side
+
+			if exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+			where PortalID = @PortalID
+			and ProductID = @RelatedProductID
+			and RelatedProductID = 	@ProductID)
+			begin
+				Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+				set 
+				DiscountAmt = @DiscountAmt,
+				DiscountPercent = @DiscountPercent,
+				ProductQty = @ProductQty,
+				MaxQty = @MaxQty,
+				RelatedType = @RelatedType,
+				--Disabled = @Disabled,  -- Don't disable other side, if this side is disabled
+				NotAvailable = @NotAvailable,
+				BiDirectional = @BiDirectional
+				where PortalID = @PortalID
+				and ProductID = @RelatedProductID
+				and RelatedProductID = 	@ProductID
+		 
+			end
+
+		end
+
+	---------------------------------------------------------
+		if @BiDirectional = 0 AND @Disabled = 0
+		begin
+		-- Bi-Directional Relation Disable, so Disable the other side
+
+			if exists (select RelatedID from {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] 
+			where PortalID = @PortalID
+			and ProductID = @RelatedProductID
+			and RelatedProductID = 	@ProductID)
+			begin
+				Update {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]
+				set 
+				DiscountAmt = @DiscountAmt,
+				DiscountPercent = @DiscountPercent,
+				ProductQty = @ProductQty,
+				MaxQty = @MaxQty,
+				RelatedType = @RelatedType,
+				Disabled = 1,
+				NotAvailable = @NotAvailable,
+				BiDirectional = @BiDirectional
+					where PortalID = @PortalID
+					and ProductID = @RelatedProductID
+					and RelatedProductID = 	@ProductID		 
+			end
+		end
+end
+end
+END
+
+
+
+
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
