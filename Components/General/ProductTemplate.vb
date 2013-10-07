@@ -2208,13 +2208,15 @@ Namespace NEvoWeb.Modules.NB_Store
             cmd.CommandName = "AddRelated"
             cmd.Visible = CBool(_NestedLevel((_NestedLevel.Count - 1)))
 
-            '1 July 2013 by Sergey Velichko: Added functionality to handle ajax calls for add related products
-            'Begin of changes
-            If (_RelatedList.IndexOf(Int32.Parse(strProductID)) <> -1) Then
-                cmd.Visible = False
-            End If
-            'End of changes
-        End Sub
+			If (_RelatedList IsNot Nothing) Then 'DCL - _RelatedList causes error on first load is releated list null
+				'1 July 2013 by Sergey Velichko: Added functionality to handle ajax calls for add related products
+				'Begin of changes
+				If (_RelatedList.IndexOf(Int32.Parse(strProductID)) <> -1) Then
+					cmd.Visible = False
+				End If
+				'End of changes
+			End If
+		End Sub
 
         Private Sub AddToWishList_DataBinding(ByVal sender As Object, ByVal e As System.EventArgs)
             Dim cmd As LinkButton

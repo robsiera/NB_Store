@@ -130,16 +130,54 @@ set @SQL = @SQL + ' (select ROW_NUMBER() OVER ('
 	set @SQL = @SQL + ' inner join {databaseOwner}{objectQualifier}NB_Store_ProductLang as PL on P.ProductID = PL.ProductID and PL.Lang = ''' + @Lang + ''''
 	set @SQL = @SQL + ' where P.PortalID = ' + convert(nvarchar(5),@PortalID)
 
+	
 	if ((@CategoryID > 0 or @CategoryList != ''))
 	begin
-		set @SQL = @SQL + ' and EXISTS (select ProductID from {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC where PC.ProductID = P.ProductID and PC.CategoryID in (' 
-		if (@CategoryID > 0)
+		if (substring(@CategoryList,1,1) = 'A')
 		begin
-			set @SQL = @SQL + convert(nvarchar(10),@CategoryID)
-			if (@CategoryList != '') set @SQL = @SQL + ','
+		    set @CategoryList = replace(@CategoryList,'A','')
+			
+			-- Oh!!..the shame!!!
+			--  OK we need this to calculate the number of categories a product must be included in to meet the AND specifications.
+			DECLARE @counter int,@position int,@oldposition int
+			SET @counter = 1
+			SET @position = -2
+
+			WHILE (@counter < LEN(@CategoryList))
+			BEGIN
+
+				SET @oldposition = @position
+				SET @position = CHARINDEX(',',@CategoryList , @position + 1)
+				IF @position = 0 AND @counter < LEN(@CategoryList)
+				BEGIN
+					SET @oldposition = 0
+					BREAK
+				END
+
+				SET @counter = @counter + 1
+			END
+			
+			set @SQL = @SQL + ' and ''' + convert(nvarchar(10),@counter) + ''' + ''|'' + convert(nvarchar(10),P.ProductID) in ( '
+			set @SQL = @SQL + ' select convert(nvarchar(10),sum(1)) + ''|'' + convert(nvarchar(10),P.ProductID) from {databaseOwner}{objectQualifier}NB_Store_Products as P '
+			set @SQL = @SQL + ' inner join {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC on P.ProductID = PC.ProductID '
+			set @SQL = @SQL + ' and PC.CategoryID in (' + @CategoryList + ') '
+			set @SQL = @SQL + ' group by P.ProductID ) '
+		end 
+		else
+		begin
+			-- filter needs to search ALL categories if or used, for backward compatiblity!
+			if (@Filter = '')
+			begin
+				set @SQL = @SQL + ' and EXISTS (select ProductID from {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC where PC.ProductID = P.ProductID and PC.CategoryID in (' 
+				if (@CategoryID > 0)
+				begin
+					set @SQL = @SQL + convert(nvarchar(10),@CategoryID)
+					if (@CategoryList != '') set @SQL = @SQL + ','
+				end
+				set @SQL = @SQL + @CategoryList
+				set @SQL = @SQL + ')) '
+			end
 		end
-		set @SQL = @SQL + @CategoryList
-		set @SQL = @SQL + ')) '
 	end	
 	
 	if @IsDealer=0
@@ -252,14 +290,51 @@ set @SQL = 'select count(P.productid) '
 
 	if ((@CategoryID > 0 or @CategoryList != ''))
 	begin
-		set @SQL = @SQL + ' and EXISTS (select ProductID from {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC where PC.ProductID = P.ProductID and PC.CategoryID in (' 
-		if (@CategoryID > 0)
+		if (substring(@CategoryList,1,1) = 'A')
 		begin
-			set @SQL = @SQL + convert(nvarchar(10),@CategoryID)
-			if (@CategoryList != '') set @SQL = @SQL + ','
+		    set @CategoryList = replace(@CategoryList,'A','')
+			
+			-- Oh!!..the shame!!!
+			--  OK we need this to calculate the number of categories a product must be included in to meet the AND specifications.
+			DECLARE @counter int,@position int,@oldposition int
+			SET @counter = 1
+			SET @position = -2
+
+			WHILE (@counter < LEN(@CategoryList))
+			BEGIN
+
+				SET @oldposition = @position
+				SET @position = CHARINDEX(',',@CategoryList , @position + 1)
+				IF @position = 0 AND @counter < LEN(@CategoryList)
+				BEGIN
+					SET @oldposition = 0
+					BREAK
+				END
+
+				SET @counter = @counter + 1
+			END
+			
+			set @SQL = @SQL + ' and ''' + convert(nvarchar(10),@counter) + ''' + ''|'' + convert(nvarchar(10),P.ProductID) in ( '
+			set @SQL = @SQL + ' select convert(nvarchar(10),sum(1)) + ''|'' + convert(nvarchar(10),P.ProductID) from {databaseOwner}{objectQualifier}NB_Store_Products as P '
+			set @SQL = @SQL + ' inner join {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC on P.ProductID = PC.ProductID '
+			set @SQL = @SQL + ' and PC.CategoryID in (' + @CategoryList + ') '
+			set @SQL = @SQL + ' group by P.ProductID ) '
+		end 
+		else
+		begin
+			-- filter needs to search ALL categories if or used, for backward compatiblity!
+			if (@Filter = '')
+			begin
+				set @SQL = @SQL + ' and EXISTS (select ProductID from {databaseOwner}{objectQualifier}NB_Store_ProductCategory as PC where PC.ProductID = P.ProductID and PC.CategoryID in (' 
+				if (@CategoryID > 0)
+				begin
+					set @SQL = @SQL + convert(nvarchar(10),@CategoryID)
+					if (@CategoryList != '') set @SQL = @SQL + ','
+				end
+				set @SQL = @SQL + @CategoryList
+				set @SQL = @SQL + ')) '
+			end
 		end
-		set @SQL = @SQL + @CategoryList
-		set @SQL = @SQL + ')) '
 	end	
 
 	if @IsDealer=0

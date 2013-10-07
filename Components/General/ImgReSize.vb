@@ -47,7 +47,8 @@ Namespace NEvoWeb.Modules.NB_Store
                         System.IO.File.Move(SrcFilePathName, fOut)
                     Catch ex As Exception
                         'try this, doesn't seem to work, and haven;t got time to fix at the moment
-                        FileSystemUtils.MoveFile(SrcFilePathName, fOut, PortalSettings)
+						FileSystemUtils.CopyFile(SrcFilePathName, fOut)
+						FileSystemUtils.DeleteFile(SrcFilePathName)
                     End Try
                 End If
             End If

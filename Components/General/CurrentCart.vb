@@ -863,9 +863,11 @@ Namespace NEvoWeb.Modules.NB_Store
 
                 Dim strFolderpath As String = GetSubFolderPath(DocPath, PS.PortalId)
 
-                FileSystemUtils.UploadFile(DocPath, fu.PostedFile)
-                FileSystemUtils.MoveFile(DocPath & fu.FileName, DocPath, PS)
-
+                ' Change to removeCookieQueryValue Obsolete MoveFile and upload file function
+                fu.SaveAs(DocPath)
+                FileSystemUtils.CopyFile(DocPath & fu.FileName, DocPath)
+                FileSystemUtils.DeleteFile(DocPath & fu.FileName)
+                
                 Dim folderInfo As DotNetNuke.Services.FileSystem.FolderInfo = FileSystemUtils.GetFolder(PS.PortalId, ORDERUPLOADFOLDER)
                 If folderInfo.StorageLocation = FolderController.StorageLocationTypes.SecureFileSystem Then
                     DocPath = PS.HomeDirectoryMapPath & ORDERUPLOADFOLDER & "\" & strGUID & System.IO.Path.GetExtension(fu.FileName) & glbProtectedExtension

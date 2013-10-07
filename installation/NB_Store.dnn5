@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="NB_Store_BackOffice" type="Module" version="2.3.7">
+    <package name="NB_Store_BackOffice" type="Module" version="2.3.8">
       <friendlyName>NB_Store_BackOffice</friendlyName>
       <description>NB_Store E-Commerce Module for DNN.</description>
       <owner>
@@ -10,7 +10,10 @@
         <email>dcl@nevoweb.com</email>
       </owner>
       <license></license>
-      <releaseNotes />
+      <releaseNotes>
+v2.3.8 Is DNN6.1 and DNN7 compatible.  	  
+NOTE: NB_Store v2.3.8 is NOT compatible with DNN5. 
+      </releaseNotes>
       <components>
         <component type="Script">
           <scripts>
