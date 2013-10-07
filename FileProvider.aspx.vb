@@ -48,9 +48,9 @@ Namespace NEvoWeb.Modules.NB_Store
                         DocPath = ""
                     End Try
 
-                    If DocPath <> "" Then
+                    If DocPath <> "" And DocPath <> "ERROR" Then
 
-                        FileExt = Right(DocPath, 3) ' just use last 3 chars for extension, should match most files.
+                        FileExt = System.IO.Path.GetExtension(DocPath)
 
                         Dim useragent As String = context.Request.Headers("User-Agent")
                         If useragent.Contains("MSIE 7.0") Or useragent.Contains("MSIE 8.0") Then
