@@ -1,0 +1,33 @@
+﻿<dotnetnuke version="3.0" type="Module">
+  <folders>
+    <folder>
+      <name>NB_Store_GatewayPayPal</name>
+      <friendlyname>NB_Store_GatewayPayPal</friendlyname>
+      <foldername>NB_Store_GatewayPayPal</foldername>
+      <modulename>NB_Store_GatewayPayPal</modulename>
+      <description>PayPal Gateway Provider</description>
+      <version>03.00.00</version>
+      <businesscontrollerclass></businesscontrollerclass>
+	  <resourcefile></resourcefile>
+      <modules>
+        <module>
+			<friendlyname>NB_Store_GatewayPayPal</friendlyname>
+			<cachetime>0</cachetime>
+			<controls>
+			</controls>
+		</module>
+     </modules>
+		<files>
+		 <file>
+          <name>NEvoweb.DNN.Modules.NB_Store.GatewayPayPal.dll</name>
+         </file>
+		 <file>
+          <name>readme.txt</name>
+         </file>
+		 <file>
+          <name>paypal60x38.gif</name>
+         </file>		 
+		</files>		
+    </folder>
+  </folders>
+</dotnetnuke>

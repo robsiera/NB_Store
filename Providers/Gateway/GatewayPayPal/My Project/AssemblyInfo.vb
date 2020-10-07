@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("GatewayPayPal")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Nevoweb")> 
-<Assembly: AssemblyProduct("GatewayPayPal")> 
-<Assembly: AssemblyCopyright("Copyright © Nevoweb 2008")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTitle("nbs2 paypal")>
+<Assembly: AssemblyDescription("nbs2 paypal")>
+<Assembly: AssemblyCompany("Nevoweb")>
+<Assembly: AssemblyProduct("nbs2 paypal")>
+<Assembly: AssemblyCopyright("Nevoweb")>
+<Assembly: AssemblyTrademark("NWB")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("3e83397a-e788-4f38-a031-07398a5a3c2d")> 
+<Assembly: Guid("735596b1-8e9a-4af2-9dc1-a60023693096")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -29,7 +29,6 @@ Imports System.Runtime.InteropServices
 '
 ' You can specify all the values or you can default the Build and Revision Numbers 
 ' by using the '*' as shown below:
-' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("3.0.0.3")>
+<Assembly: AssemblyFileVersion("3.0.0.3")>

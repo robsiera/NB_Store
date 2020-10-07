@@ -1,0 +1,36 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="NB_Store_GatewayPayPal" type="Module" version="3.0.0">
+      <friendlyName>NB_Store_GatewayPayPal</friendlyName>
+      <description>This package contains NEvoweb.DNN.Modules.NB_Store.GatewayPayPal dll</description>
+      <owner>
+        <name>Nevoweb SARL</name>
+        <organization>Nevoweb SARL</organization>
+        <url>http://nbstore.codeplex.com</url>
+        <email></email>
+      </owner>
+      <components>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>NEvoweb.DNN.Modules.NB_Store.GatewayPayPal.dll</name>
+			  <sourceFileName>NEvoweb.DNN.Modules.NB_Store.GatewayPayPal.dll</sourceFileName>
+			  <version>03.00.00</version>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="File">
+          <files>
+            <basePath>DesktopModules\NB_Store_GatewayPayPal</basePath>
+		 <file>
+          <name>readme.txt</name>
+         </file>
+		 <file>
+          <name>paypal60x38.gif</name>
+         </file>		 
+		</files>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
