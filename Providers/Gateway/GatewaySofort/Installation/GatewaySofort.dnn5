@@ -1,0 +1,51 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="NB_Store_GatewaySofort" type="Module" version="1.0.0">
+      <friendlyName>NB_Store_GatewaySofort</friendlyName>
+      <description>NB_Store_GatewaySofort</description>
+      <owner>
+				<name>HolonCom</name>
+				<organization>HolonCom</organization>
+				<url>www.holoncom.eu</url>
+				<email>info@holoncom.eu</email>
+      </owner>
+      <license />
+      <releaseNotes>V1.0.3 fixed a bug under .Net 3.5</releaseNotes>
+      <components>
+        <component type="Module">
+          <desktopModule>
+            <moduleName>NB_Store_GatewaySofort</moduleName>
+            <foldername>NB_Store_GatewaySofort</foldername>
+            <businessControllerClass />
+            <supportedFeatures />
+            <moduleDefinitions />
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+			  <name>NEvoweb.DNN.Modules.NB_Store.GatewaySofort.dll</name>
+			  <sourceFileName>NEvoweb.DNN.Modules.NB_Store.GatewaySofort.dll</sourceFileName>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="File">
+          <files>
+            <basePath>DesktopModules\NB_Store_GatewaySofort</basePath>
+		 <file>
+          <name>readme.txt</name>
+         </file>
+		</files>
+        </component>
+				<component type="File">
+					<files>
+						<basePath>DesktopModules\NB_Store_GatewaySofort</basePath>
+						<file>
+							<name>sofortGateway.jpg</name>
+						</file>
+					</files>
+				</component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
