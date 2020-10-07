@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("NB_Store")> 
 <Assembly: AssemblyDescription("E-Commerce for DotNetNuke")> 
-<Assembly: AssemblyCompany("NevoWeb")> 
+<Assembly: AssemblyCompany("NevoWeb (assisted by holoncom & helferlein)")> 
 <Assembly: AssemblyProduct("NB_Store")> 
 <Assembly: AssemblyCopyright("NevoWeb")> 
 <Assembly: AssemblyTrademark("")> 
@@ -30,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' You can specify all the values or you can default the Build and Revision Numbers 
 ' by using the '*' as shown below:
 
-<Assembly: AssemblyVersion("2.3.8.0")> 
-<Assembly: AssemblyFileVersion("2.3.8.0")> 
+<Assembly: AssemblyVersion("2.3.9.1")> 
+<Assembly: AssemblyFileVersion("2.3.9.1")> 

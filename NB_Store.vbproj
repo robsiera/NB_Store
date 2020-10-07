@@ -24,6 +24,12 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,24 +52,22 @@
     <WarningsAsErrors>41998,42004,42020,42021,42022,42024,42026,42029,42030,42031,42099,42104,42108,42109</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetNuke, Version=5.2.3.74, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DotNetNuke, Version=7.1.0.2676, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Support\DNN6x\bin610\DotNetNuke.dll</HintPath>
+      <HintPath>_Referenced Dlls\DNN550\DotNetNuke.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DotNetNuke.WebUtility, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Bin\DotNetNuke.WebUtility.dll</HintPath>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>_Referenced Dlls\DNN550\DotNetNuke.WebUtility.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>_Referenced Dlls\DNN550\Microsoft.ApplicationBlocks.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SharpZipLib, Version=0.81.0.1407, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Bin\SharpZipLib.dll</HintPath>
+      <HintPath>_Referenced Dlls\DNN550\SharpZipLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

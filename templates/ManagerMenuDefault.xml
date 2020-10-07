@@ -1,4 +1,4 @@
-﻿<content type="NB_Store_BackOffice" version="02.03.07">
+﻿<content type="NB_Store_BackOffice" version="02.03.09">
 <storecontent>
 <settings>
 <admincss.includes Lang="None" CtrlType="TextBox" GroupRef="root/system/backoffice" HostOnly="True"><![CDATA[]]></admincss.includes>
@@ -1175,13 +1175,10 @@ a:active, a:hover{color:#6D94B9}
 /* Details Document and Downloads tab */
 .Detail .Documents{margin-bottom:24px}
 .Detail .Document{margin-bottom:18px}
-.Detail .DocumentIcon{margin-right:8px;vertical-align:-3px}
-.Detail .DocumentLink{}
+.Detail .DocumentName{font-weight:bold}
+.Detail .DocumentIcon{margin-left:8px;vertical-align:-3px}
+.Detail .DocumentLink{display:inline-block;margin-bottom:12px}
 .Detail .DocumentDescription{margin-bottom:8px}
-.Detail .Downloads{margin-bottom:24px}
-.Detail .Download{margin-bottom:8px}
-.Detail .DownloadIcon{margin-right:8px;vertical-align:-3px}
-.Detail .DownloadLink{display:inline-block;margin-bottom:12px}
 
 /* Details Models tab */
 .Detail .ModelTable{border-collapse:collapse;margin-bottom:24px;width:100%}
@@ -1831,36 +1828,55 @@ a:active, a:hover{color:#6D94B9}
 	[TAG:END]
 	[TAG:END]
  --&gt;
- 
+
 &lt;!-- Begin Documents Content Panel --&gt;
    [TAG:TEST:&lt;prop TestType=&quot;hasDocuments&quot; Action=&quot;Show&quot; /&gt;]
+   &lt;div id=&quot;tabs-3&quot;&gt;
+   &lt;div class=&quot;Documents&quot;&gt;
 	[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;1&quot; Action=&quot;Hide&quot; /&gt;]
-   &lt;div id=&quot;tabs-3&quot;&gt;
-   &lt;div class=&quot;Documents&quot;&gt;
 	&lt;h3&gt;Product Documentation&lt;/h3&gt;
-		&lt;div class=&quot;Document&quot;&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC1]&lt;/div&gt;[TAG:DOC1:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;][TAG:DOCLINK1:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Document&quot;&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC2]&lt;/div&gt;[TAG:DOC2:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;][TAG:DOCLINK2:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Document&quot;&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC3]&lt;/div&gt;[TAG:DOC3:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;][TAG:DOCLINK3:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Document&quot;&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC4]&lt;/div&gt;[TAG:DOC4:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;][TAG:DOCLINK4:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;]&lt;/div&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
 	[TAG:END]
-&lt;!-- End Documents Content Panel --&gt;
-	
-&lt;!-- Begin Document Downloads Content Panel --&gt;
-	[TAG:TEST:&lt;prop TestType=&quot;isinrole&quot; TestValue=&quot;Registered Users&quot; Action=&quot;Show&quot; /&gt;]
 	[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;0&quot; Action=&quot;Hide&quot; /&gt;]
-   &lt;div id=&quot;tabs-3&quot;&gt;
-   &lt;div class=&quot;Documents&quot;&gt;
 	&lt;h3&gt;Download your purchased files here after payment&lt;/h3&gt;
-		&lt;div class=&quot;Download&quot;&gt;[TAG:DOCPURCHASED1:&lt;prop CssClass=&quot;DownloadIcon&quot; /&gt;][TAG:DOCPURCHASEDLINK1:&lt;prop CssClass=&quot;DownloadLink&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Download&quot;&gt;[TAG:DOCPURCHASED2:&lt;prop CssClass=&quot;DownloadIcon&quot; /&gt;][TAG:DOCPURCHASEDLINK2:&lt;prop CssClass=&quot;DownloadLink&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Download&quot;&gt;[TAG:DOCPURCHASED3:&lt;prop CssClass=&quot;DownloadIcon&quot; /&gt;][TAG:DOCPURCHASEDLINK3:&lt;prop CssClass=&quot;DownloadLink&quot; /&gt;]&lt;/div&gt;
-		&lt;div class=&quot;Download&quot;&gt;[TAG:DOCPURCHASED4:&lt;prop CssClass=&quot;DownloadIcon&quot; /&gt;][TAG:DOCPURCHASEDLINK4:&lt;prop CssClass=&quot;DownloadLink&quot; /&gt;]&lt;/div&gt;
+	[TAG:END]
+		&lt;div class=&quot;Document&quot;&gt;
+		&lt;div class=&quot;DocumentName&quot;&gt;[TAG:DOCNAME1]&lt;/div&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC1]&lt;/div&gt;
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;1&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCLINK1:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOC1:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;0&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCPURCHASEDLINK1:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOCPURCHASED1:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		&lt;/div&gt;
+		&lt;div class=&quot;Document&quot;&gt;
+		&lt;div class=&quot;DocumentName&quot;&gt;[TAG:DOCNAME2]&lt;/div&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC2]&lt;/div&gt;
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;1&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCLINK2:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOC2:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;0&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCPURCHASEDLINK2:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOCPURCHASED2:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		&lt;/div&gt;
+		&lt;div class=&quot;Document&quot;&gt;
+		&lt;div class=&quot;DocumentName&quot;&gt;[TAG:DOCNAME3]&lt;/div&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC3]&lt;/div&gt;
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;1&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCLINK3:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOC3:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;0&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCPURCHASEDLINK3:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOCPURCHASED3:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		&lt;/div&gt;
+		&lt;div class=&quot;Document&quot;&gt;
+		&lt;div class=&quot;DocumentName&quot;&gt;[TAG:DOCNAME4]&lt;/div&gt;&lt;div class=&quot;DocumentDescription&quot;&gt;[TAG:DOCDESC4]&lt;/div&gt;
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;1&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCLINK4:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOC4:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		[TAG:TEST:&lt;prop TestType=&quot;setting&quot; TestName=&quot;downloadableproducts.flag&quot; TestValue=&quot;0&quot; Action=&quot;Hide&quot; /&gt;]
+		[TAG:DOCPURCHASEDLINK4:&lt;prop CssClass=&quot;DocumentLink&quot; text=&quot;Download&quot; /&gt;][TAG:DOCPURCHASED4:&lt;prop CssClass=&quot;DocumentIcon&quot; /&gt;]
+		[TAG:END]
+		&lt;/div&gt;
    &lt;/div&gt;
    &lt;/div&gt;
-	[TAG:END]
-	[TAG:END]
 	[TAG:END]
 &lt;!-- End Document Downloads Content Panel --&gt;
    

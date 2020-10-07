@@ -341,7 +341,7 @@
     <value>Comma separated list of 2-digit country codes where tax calculations will apply. For example FR,UK,NZ,US. If not populated then tax will apply to all countries.</value>
   </data>
   <data name="filesystemtemplates.flag" xml:space="preserve">
-    <value>If set to True and the "debug.mode" setting is also set to true then a directory will be created in the protal which will allow edit of the template through the file system.  This option is for development and should not be used on a production system.</value>
+    <value>If set to True and the "debug.mode" setting is also set to true then a directory will be created in the portal which will allow edit of the template through the file system.  This option is for development and should not be used on a production system.</value>
   </data>
   <data name="admintemplates.groups" xml:space="preserve">
     <value>This is a xml structure of the template admin treeview.  In normal operation, this option should not be altered.</value>

@@ -61,8 +61,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Orders] (
 	CONSTRAINT [PK_NB_Store_Orders] PRIMARY KEY  CLUSTERED 
 	(
 		[OrderID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -79,8 +79,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Cart] (
 	CONSTRAINT [PK_NB_Store_Cart] PRIMARY KEY  CLUSTERED 
 	(
 		[CartID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NB_Store_Categories]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
@@ -98,8 +98,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Categories] (
 	CONSTRAINT [PK_NB_Store_Categories] PRIMARY KEY  CLUSTERED 
 	(
 		[CategoryID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -116,8 +116,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OrderStatus] (
 	(
 		[OrderStatusID],
 		[Lang]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -138,8 +138,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_SaleRates] (
 	CONSTRAINT [PK_NB_Store_SaleRates] PRIMARY KEY  CLUSTERED 
 	(
 		[ItemID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -160,8 +160,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Settings] (
 		[PortalID],
 		[SettingName],
 		[Lang]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -179,8 +179,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_SettingsText] (
 		[PortalID],
 		[SettingName],
 		[Lang]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -204,8 +204,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ShippingRates] (
 	CONSTRAINT [PK_NB_Store_ShipAdmin] PRIMARY KEY  CLUSTERED 
 	(
 		[ItemId]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -223,8 +223,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_TaxRates] (
 	CONSTRAINT [PK_NB_Store_TaxRates] PRIMARY KEY  CLUSTERED 
 	(
 		[ItemID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 
@@ -253,14 +253,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Address] (
 	CONSTRAINT [PK_NB_Store_Addresses] PRIMARY KEY  CLUSTERED 
 	(
 		[AddressID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_Address_NB_Store_Orders] FOREIGN KEY 
 	(
 		[OrderID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Orders] (
 		[OrderID]
 	)
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -284,14 +284,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Products] (
 	CONSTRAINT [PK_NB_Store_Products] PRIMARY KEY  CLUSTERED 
 	(
 		[ProductID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_Products_NB_Store_Categories] FOREIGN KEY 
 	(
 		[CategoryID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Categories] (
 		[CategoryID]
 	)
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -313,14 +313,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Model] (
 	CONSTRAINT [PK_NB_Store_ProductVariant] PRIMARY KEY  CLUSTERED 
 	(
 		[ModelID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductVariant_NB_Store_Products] FOREIGN KEY 
 	(
 		[ProductID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -342,7 +342,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_CartItems] (
 	CONSTRAINT [PK_NB_Store_CartItems] PRIMARY KEY  CLUSTERED 
 	(
 		[ItemID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_CartItems_NB_Store_Cart] FOREIGN KEY 
 	(
 		[CartID]
@@ -355,7 +355,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_CartItems] (
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Model] (
 		[ModelID]
 	)
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -375,14 +375,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_CategoryLang] (
 	(
 		[CategoryID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_CategoryLang_NB_Store_Categories] FOREIGN KEY 
 	(
 		[CategoryID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Categories] (
 		[CategoryID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -400,14 +400,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ModelLang] (
 	(
 		[ModelID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ModelLang_NB_Store_Model] FOREIGN KEY 
 	(
 		[ModelID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Model] (
 		[ModelID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -423,14 +423,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Option] (
 	CONSTRAINT [PK_NB_Store_ProductOption] PRIMARY KEY  CLUSTERED 
 	(
 		[OptionID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_Option_NB_Store_Products] FOREIGN KEY 
 	(
 		[ProductID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -446,14 +446,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OptionLang] (
 	(
 		[OptionID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_OptionLang_NB_Store_Option] FOREIGN KEY 
 	(
 		[OptionID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Option] (
 		[OptionID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -469,14 +469,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OptionValue] (
 	CONSTRAINT [PK_NB_Store_ProductOptionValue] PRIMARY KEY  CLUSTERED 
 	(
 		[OptionValueID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductOptionValue_NB_Store_ProductOption] FOREIGN KEY 
 	(
 		[OptionID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Option] (
 		[OptionID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -492,14 +492,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OptionValueLang] (
 	(
 		[OptionValueID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_OptionValueLang_NB_Store_OptionValue] FOREIGN KEY 
 	(
 		[OptionValueID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_OptionValue] (
 		[OptionValueID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -520,7 +520,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OrderDetails] (
 	CONSTRAINT [PK_NB_Store_OrderDetails] PRIMARY KEY  CLUSTERED 
 	(
 		[OrderDetailID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_OrderDetails_NB_Store_Model] FOREIGN KEY 
 	(
 		[ModelID]
@@ -533,7 +533,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_OrderDetails] (
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Orders] (
 		[OrderID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -555,14 +555,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductImage] (
 	CONSTRAINT [PK_NB_Store_ProductImage] PRIMARY KEY  CLUSTERED 
 	(
 		[ImageID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductImage_NB_Store_Products] FOREIGN KEY 
 	(
 		[ProductID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	)
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -578,14 +578,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductImageLang] (
 	(
 		[ImageID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductImageLang_NB_Store_ProductImage] FOREIGN KEY 
 	(
 		[ImageID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_ProductImage] (
 		[ImageID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -604,14 +604,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductLang] (
 	(
 		[ProductID],
 		[Lang]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductLang_NB_Store_Products] FOREIGN KEY 
 	(
 		[ProductID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -634,14 +634,14 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_Reviews] (
 	CONSTRAINT [PK_NB_Store_Reviews] PRIMARY KEY  CLUSTERED 
 	(
 		[ReviewID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_Reviews_NB_Store_Products] FOREIGN KEY 
 	(
 		[ProductID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	)
-) 
+) ON [PRIMARY]
 GO
 
 
@@ -1755,7 +1755,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime
@@ -1843,7 +1843,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ModelLang_U
 (
 @ModelID int,
 @Lang nchar(5),
-@ModelName nvarchar(50)
+@ModelName nvarchar(150)
 )
 AS
 BEGIN

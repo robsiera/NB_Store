@@ -82,8 +82,8 @@ Namespace NEvoWeb.Modules.NB_Store
             End If
 
             _SkinSrc = ""
-            If Not (Request.QueryString("SkinSrc") Is Nothing) Then
-                _SkinSrc = Request.QueryString("SkinSrc")
+            If Not (Request.QueryString("skinsrc") Is Nothing) Then
+                _SkinSrc = Request.QueryString("skinsrc")
             End If
 
             _Related = False

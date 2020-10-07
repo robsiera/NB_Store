@@ -228,7 +228,7 @@ Namespace NEvoWeb.Modules.NB_Store
                         Dim aryList As ArrayList
                         aryList = GetAvailableModelList(PortalID, ProductID, Lang, IsDealer(PortalID, UsrInfo, GetCurrentCulture))
 
-                        If aryList.Count > 1 Then
+                        If aryList.Count >= 1 Then '#RS# 1 item is enough for Model2 dropdowns 
                             strReturn = getActionBoolean()
                         Else
                             strReturn = Not getActionBoolean()

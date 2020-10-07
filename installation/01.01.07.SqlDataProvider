@@ -68,8 +68,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ShippingMethod] (
 	CONSTRAINT [PK_NB_Store_ShippingMethod_1] PRIMARY KEY  CLUSTERED 
 	(
 		[ShipMethodID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
 /************************************************************/
@@ -719,7 +719,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime,
@@ -834,7 +834,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ModelLang_U
 (
 @ModelID int,
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @XMLData xml
 )
 AS

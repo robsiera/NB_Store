@@ -39,7 +39,7 @@ Namespace NEvoWeb.Modules.NB_Store
             If IsNumeric(tmp) Then
                 QtyLimit = CInt(tmp)
             End If
-            
+
             dlGateway2.ItemTemplate = New ProductTemplate(TabId, ModuleId, StoreInstallPath, "50", Server.HtmlDecode(TemplateText), False, "", CType(Settings("txtCssBuyButton"), String), 1, -1, "50", "", TabId, UserId, UserInfo, "", "", blnLockOnCart, QtyLimit)
 
         End Sub
@@ -112,6 +112,7 @@ Namespace NEvoWeb.Modules.NB_Store
                                 objCInfo = CurrentCart.GetCurrentCart(PortalId)
                                 txtVATCode.Text = objCInfo.VATNumber
                                 txtPromoCode.Text = objCInfo.PromoCode
+                                DisplayTermsAndConditions()
                                 If objCInfo.CountryCode = "" Then
                                     'get special countrycode if set.
                                     objCInfo.CountryCode = GetStoreSetting(PortalId, "shipcountrycode.default", GetCurrentCulture)
@@ -166,13 +167,14 @@ Namespace NEvoWeb.Modules.NB_Store
                                 dlGateway2.DataSource = aryList
                                 dlGateway2.DataBind()
 
+                                Dim sentmail As Boolean = GetStoreSettingBoolean(PortalId, "sentcheckingoutemail.flag", "None")
+                                If sentmail Then SendEmailToManager(PortalId, objOInfo.OrderNumber, objOInfo, "checkingout.email")
                             End If
 
                             AddChqGateway()
                             AddBankGateway()
-                            End If
+                        End If
                     Case "4" ' AUTO run return for bank
-
                         objGateway.AutoResponse(PortalId, Request)
 
                         If Not InternalUpdateInterface.Instance() Is Nothing Then
@@ -184,29 +186,29 @@ Namespace NEvoWeb.Modules.NB_Store
                         End If
 
                         'support for merchant integrated CC input.
-                            If Not Session("BankHtmlRedirect") Is Nothing Then
-                                If Session("BankHtmlRedirect") <> "" Then
-                                    Response.Redirect(EditUrl("RemotePost"))
-                                End If
+                        If Not Session("BankHtmlRedirect") Is Nothing Then
+                            If Session("BankHtmlRedirect") <> "" Then
+                                Response.Redirect(EditUrl("RemotePost"))
                             End If
+                        End If
 
                     Case "5" ' completed return
-                            If CurrentCart.IsCartEmpty(PortalId) Then
-                                If Request.QueryString("chq") Is Nothing Then
-                                    objGateway.AutoResponse(PortalId, Request) ' put auto response here, for payment providers that return notify on same url as return.
-                                End If
-                                DisplayEmptyCart()
-                            Else
-                                If Not InternalUpdateInterface.Instance() Is Nothing Then
-                                    InternalUpdateInterface.Instance.ReturnToStore(PortalId, CurrentCart.GetCurrentCart(PortalId), GetCurrentCulture, Request)
-                                End If
-
-                                If Not (Request.QueryString("chq") Is Nothing) Then
-                                    CompletedChqPayment()
-                                Else
-                                    CompletedBankPayment()
-                                End If
+                        If CurrentCart.IsCartEmpty(PortalId) Then
+                            If Request.QueryString("chq") Is Nothing Then
+                                objGateway.AutoResponse(PortalId, Request) ' put auto response here, for payment providers that return notify on same url as return.
                             End If
+                            DisplayEmptyCart()
+                        Else
+                            If Not InternalUpdateInterface.Instance() Is Nothing Then
+                                InternalUpdateInterface.Instance.ReturnToStore(PortalId, CurrentCart.GetCurrentCart(PortalId), GetCurrentCulture, Request)
+                            End If
+
+                            If (Request.QueryString("chq") IsNot Nothing) Then
+                                CompletedChqPayment()
+                            Else
+                                CompletedBankPayment()
+                            End If
+                        End If
                 End Select
             Catch exc As Exception
                 ProcessModuleLoadException(Me, exc)
@@ -222,6 +224,12 @@ Namespace NEvoWeb.Modules.NB_Store
         End Sub
 
         Private Sub cmdOrder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdOrder.Click
+            If (Not chkTermsAndConditions.Checked) Then
+                plTermsAndConditions.CssClass = "Label danger"
+                Return
+            Else
+                plTermsAndConditions.CssClass = "Label"
+            End If
             cartlist1.UpdateQty()
             Dim ShipMethodID As Integer
             Dim objCInfo As NB_Store_CartInfo = CurrentCart.GetCurrentCart(PortalId)
@@ -410,6 +418,28 @@ Namespace NEvoWeb.Modules.NB_Store
                 End If
             End If
             phEmptyCart.Controls.Add(New LiteralControl(EmptyCartText))
+        End Sub
+
+        Private Sub DisplayTermsAndConditions()
+            If CType(Settings("chkTermsAndConditions"), Boolean) = False Then
+                chkTermsAndConditions.Visible = False
+                plTermsAndConditions.Visible = False
+                divTermsAndConditions.Visible = False
+                chkTermsAndConditions.Checked = True
+            Else
+                Dim objSCtrl As New NB_Store.SettingsController
+                Dim objInfo As NB_Store_SettingsTextInfo
+                Dim termsAndConditionsText As String = Localization.GetString("TermsAndConditions", LocalResourceFile)
+
+                objInfo = objSCtrl.GetSettingsText(PortalId, "termsandconditions.text", GetCurrentCulture)
+                If Not objInfo Is Nothing Then
+                    If objInfo.SettingText <> "" Then
+                        termsAndConditionsText = System.Web.HttpUtility.HtmlDecode(objInfo.SettingText)
+                    End If
+                End If
+                'phTermsAndConditions.Controls.Add(New LiteralControl(termsAndConditionsText))
+                plTermsAndConditions.Text = termsAndConditionsText
+            End If
         End Sub
 
         Private Sub DisplayMinimumCart()

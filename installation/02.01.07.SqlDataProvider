@@ -33,11 +33,11 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_SearchWords] (
 	CONSTRAINT [PK_NB_Store_SearchWords] PRIMARY KEY  CLUSTERED 
 	(
 		[SearchWordID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
- CREATE  INDEX [IX_NB_Store_SearchWords] ON {databaseOwner}[{objectQualifier}NB_Store_SearchWords]([SearchWord]) 
+ CREATE  INDEX [IX_NB_Store_SearchWords] ON {databaseOwner}[{objectQualifier}NB_Store_SearchWords]([SearchWord]) ON [PRIMARY]
 GO
 
 
@@ -55,17 +55,17 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_SearchWordHits] (
 	CONSTRAINT [PK_NB_Store_SearchWordHits] PRIMARY KEY  CLUSTERED 
 	(
 		[SearchWordHitID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_SearchWordHits_NB_Store_SearchWords] FOREIGN KEY 
 	(
 		[SearchWordID]
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_SearchWords] (
 		[SearchWordID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
- CREATE  INDEX [IX_NB_Store_SearchWordHits] ON {databaseOwner}[{objectQualifier}NB_Store_SearchWordHits]([HitDate] DESC ) 
+ CREATE  INDEX [IX_NB_Store_SearchWordHits] ON {databaseOwner}[{objectQualifier}NB_Store_SearchWordHits]([HitDate] DESC ) ON [PRIMARY]
 GO
 
 
@@ -508,7 +508,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime,

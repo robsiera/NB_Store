@@ -182,9 +182,13 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
               <name>02.03.07.SqlDataProvider</name>
               <version>02.03.07</version>
             </script>
+            <script type="Install">
+              <name>02.03.08.SqlDataProvider</name>
+              <version>02.03.08</version>
+            </script>
             <script type="UnInstall">
               <name>Uninstall.SqlDataProvider</name>
-              <version>02.03.07</version>
+              <version>02.03.08</version>
             </script>
           </scripts>
         </component>
@@ -434,7 +438,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
     </package>
 
 
-    <package name="NB_Store_CategoryMenu" type="Module" version="2.3.7">
+    <package name="NB_Store_CategoryMenu" type="Module" version="2.3.8">
       <friendlyName>NB_Store_CategoryMenu</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />
@@ -480,7 +484,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
       </components>
     </package>
 
-    <package name="NB_Store_Checkout" type="Module" version="2.3.7">
+    <package name="NB_Store_Checkout" type="Module" version="2.3.8">
       <friendlyName>NB_Store_Checkout</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />
@@ -538,7 +542,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
     </package>
 
 
-    <package name="NB_Store_MiniCart" type="Module" version="2.3.7">
+    <package name="NB_Store_MiniCart" type="Module" version="2.3.8">
       <friendlyName>NB_Store_MiniCart</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />
@@ -587,7 +591,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
       </components>
     </package>
 
-    <package name="NB_Store_OrderHistory" type="Module" version="2.3.7">
+    <package name="NB_Store_OrderHistory" type="Module" version="2.3.8">
       <friendlyName>NB_Store_OrderHistory</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />
@@ -645,7 +649,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
       </components>
     </package>
 
-    <package name="NB_Store_ProductList" type="Module" version="2.3.7">
+    <package name="NB_Store_ProductList" type="Module" version="2.3.8">
       <friendlyName>NB_Store_ProductList</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />
@@ -725,7 +729,7 @@ NOTE: NB_Store v2.3.8 is NOT compatible with DNN5.
       </components>
     </package>
 
-    <package name="NB_Store_Search" type="Module" version="2.3.7">
+    <package name="NB_Store_Search" type="Module" version="2.3.8">
       <friendlyName>NB_Store_Search</friendlyName>
       <description>NB_Store.</description>
       <releaseNotes />

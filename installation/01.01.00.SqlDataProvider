@@ -40,7 +40,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductCategory] (
 	(
 		[ProductID],
 		[CategoryID]
-	)   ,
+	)  ON [PRIMARY] ,
 	CONSTRAINT [FK_NB_Store_ProductCategory_NB_Store_Categories] FOREIGN KEY 
 	(
 		[CategoryID]
@@ -53,7 +53,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductCategory] (
 	) REFERENCES {databaseOwner}[{objectQualifier}NB_Store_Products] (
 		[ProductID]
 	) ON DELETE CASCADE 
-) 
+) ON [PRIMARY]
 GO
 
 /**** Do SPROCS  ****/
@@ -758,7 +758,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime,

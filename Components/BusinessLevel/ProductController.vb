@@ -29,8 +29,7 @@ Imports NEvoWeb.Modules.NB_Store.SharedFunctions
 Namespace NEvoWeb.Modules.NB_Store
 
     Public Class ProductController
-
-
+        
 #Region "NB_Store_Products Public Methods"
 
         Public Sub CopyProductToLanguages(ByVal objInfo As NB_Store_ProductsInfo, Optional ByVal ForceOverwrite As Boolean = True)
@@ -816,7 +815,8 @@ Namespace NEvoWeb.Modules.NB_Store
                     End If
                     If objInfo.QtyRemaining < 0 Then
                         objInfo.QtyRemaining = 0
-                        'TODO: Send email of stock level eror
+                        'TODO: move to settings/templates
+                        SendEmailToAdministrator(objInfo.PortalID, "Stock Error", String.Format("Error while updating stock. Please review product {0}-{1} model {2}-{3}-{4} ", objInfo.ProductID, objInfo.ProductName, objInfo.ModelID, objInfo.ModelRef, objInfo.ModelName))
                     End If
                     If objInfo.QtyTrans < 0 Then
                         objInfo.QtyTrans = 0

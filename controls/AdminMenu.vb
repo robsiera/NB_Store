@@ -138,7 +138,7 @@ Namespace NEvoWeb.Modules.NB_Store
             'only display button if menu module is being used, menu module should match resx module.
             If hyp.Text <> "" And ResxCtrl.StartsWith(Me.Parent.GetType().BaseType.Name) Then
                 hyp.CssClass = EnterCss
-                hyp.NavigateUrl = NavigateURL(EnterCtrl, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, "SkinSrc=" & SkinSrc)
+                hyp.NavigateUrl = NavigateURL(EnterCtrl, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, "skinsrc=" & SkinSrc)
 
                 If EnterCssDiv <> "" Then
                     EnterCssDiv = " class=""" & EnterCssDiv & """"
@@ -293,7 +293,7 @@ Namespace NEvoWeb.Modules.NB_Store
                         If SkinSrc = "" Then
                             strLink &= "<td " & TabliActiveCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                         Else
-                            strLink &= "<td " & TabliActiveCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText, "SkinSrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
+                            strLink &= "<td " & TabliActiveCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText, "skinsrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                         End If
                     Else
                         If nod.Attributes("ctl").InnerText = "EXIT" Then
@@ -304,7 +304,7 @@ Namespace NEvoWeb.Modules.NB_Store
                             If SkinSrc = "" Then
                                 strLink &= "<td " & TabliCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                             Else
-                                strLink &= "<td " & TabliCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText, "SkinSrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
+                                strLink &= "<td " & TabliCss & " ><a href=""" & NavigateURL(nod.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod.Attributes("param").InnerText, "skinsrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0"" align=""absmiddle"" /> " & getLocalTabText(nod.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                             End If
                         End If
                     End If
@@ -317,7 +317,10 @@ Namespace NEvoWeb.Modules.NB_Store
             plhTabMenu.Controls.Add(New LiteralControl(strLink))
 
             'select 1st subtab nod with ctl attribute
-            nod = xmlDoc.SelectSingleNode("root/tabs/tab/subtab[@ctl=""" & dnnctl & """]")
+            'superska: we're making it a case insensitive select
+            Dim lCaseAlphabet As String = "abcdefghijklmnopqrstuvwxyz"
+            Dim uCaseAlphabet As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            nod = xmlDoc.SelectSingleNode(String.Format("root/tabs/tab/subtab[translate(@ctl, '{0}', '{1}') =""{2}""]", uCaseAlphabet, lCaseAlphabet, dnnctl.ToLower()))
 
             If nod Is Nothing Then
                 'dnn throws ctl name is as lower case on login, so just teke fisrt node
@@ -347,7 +350,7 @@ Namespace NEvoWeb.Modules.NB_Store
                             If SkinSrc = "" Then
                                 strLink &= "<td " & SubTabliActiveCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                             Else
-                                strLink &= "<td " & SubTabliActiveCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText, "SkinSrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
+                                strLink &= "<td " & SubTabliActiveCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText, "skinsrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                             End If
                         Else
                             If nod2.Attributes("ctl").InnerText = "HELP" Then
@@ -357,7 +360,7 @@ Namespace NEvoWeb.Modules.NB_Store
                                 If SkinSrc = "" Then
                                     strLink &= "<td " & SubTabliCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                                 Else
-                                    strLink &= "<td " & SubTabliCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText, "SkinSrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
+                                    strLink &= "<td " & SubTabliCss & " ><a href=""" & NavigateURL(nod2.Attributes("ctl").InnerText, "mid=" & CType(Me.Parent, Entities.Modules.PortalModuleBase).ModuleId, nod2.Attributes("param").InnerText, "skinsrc=" & SkinSrc) & """ ><img src=""" & iconURL & """ alt="""" border=""0""  align=""absmiddle""/> " & getLocalTabText(nod2.Attributes("text").InnerText, ResxCtrl) & "</a></td>"
                                 End If
                             End If
                         End If

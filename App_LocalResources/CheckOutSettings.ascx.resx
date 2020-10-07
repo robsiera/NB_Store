@@ -207,6 +207,9 @@
   <data name="plShowShipMethod.Text" xml:space="preserve">
     <value>Show Shipping Methods</value>
   </data>
+  <data name="plTermsAndConditions.Text" xml:space="preserve">
+    <value>Include Terms and Conditions</value>
+  </data>
   <data name="plShowShipMethod.Help" xml:space="preserve">
     <value>This will display all the shipping methods and allow the customer to select their prefered one.</value>
   </data>
@@ -266,5 +269,8 @@
   </data>
   <data name="GatewayDisplay3.Text" xml:space="preserve">
     <value>Both</value>
+  </data>
+  <data name="plTermsAndConditions.Help" xml:space="preserve">
+    <value>Check this option to display a Terms and Conditions checkbox, which has to be checked. You may enter the text for this checkbox in the Back Office Settings by adding a template called termsandconditions.text.</value>
   </data>
 </root>

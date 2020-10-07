@@ -564,7 +564,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _AddressDescription
             End Get
             Set(ByVal Value As String)
-                _AddressDescription = Value
+                _AddressDescription = CleanupInput(Value)
             End Set
         End Property
 
@@ -573,7 +573,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _AddressName
             End Get
             Set(ByVal Value As String)
-                _AddressName = Value
+                _AddressName = CleanupInput(Value)
             End Set
         End Property
 
@@ -582,7 +582,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _AddressName2
             End Get
             Set(ByVal Value As String)
-                _AddressName2 = Value
+                _AddressName2 = CleanupInput(Value)
             End Set
         End Property
 
@@ -591,7 +591,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Address1
             End Get
             Set(ByVal Value As String)
-                _Address1 = Value
+                _Address1 = CleanupInput(Value)
             End Set
         End Property
 
@@ -600,7 +600,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Address2
             End Get
             Set(ByVal Value As String)
-                _Address2 = Value
+                _Address2 = CleanupInput(Value)
             End Set
         End Property
 
@@ -609,7 +609,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _City
             End Get
             Set(ByVal Value As String)
-                _City = Value
+                _City = CleanupInput(Value)
             End Set
         End Property
 
@@ -618,7 +618,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _RegionCode
             End Get
             Set(ByVal Value As String)
-                _RegionCode = Value
+                _RegionCode = CleanupInput(Value)
             End Set
         End Property
 
@@ -627,7 +627,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _CountryCode
             End Get
             Set(ByVal Value As String)
-                _CountryCode = Value
+                _CountryCode = CleanupInput(Value)
             End Set
         End Property
 
@@ -636,7 +636,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _PostalCode
             End Get
             Set(ByVal Value As String)
-                _PostalCode = Value
+                _PostalCode = CleanupInput(Value)
             End Set
         End Property
 
@@ -645,7 +645,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Phone1
             End Get
             Set(ByVal Value As String)
-                _Phone1 = Value
+                _Phone1 = CleanupInput(Value)
             End Set
         End Property
 
@@ -654,7 +654,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Phone2
             End Get
             Set(ByVal Value As String)
-                _Phone2 = Value
+                _Phone2 = CleanupInput(Value)
             End Set
         End Property
 
@@ -663,7 +663,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _PrimaryAddress
             End Get
             Set(ByVal Value As Boolean)
-                _PrimaryAddress = Value
+                _PrimaryAddress = CleanupInput(Value)
             End Set
         End Property
 
@@ -672,7 +672,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _CreatedByUser
             End Get
             Set(ByVal Value As String)
-                _CreatedByUser = Value
+                _CreatedByUser = CleanupInput(Value)
             End Set
         End Property
 
@@ -681,7 +681,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _CreatedDate
             End Get
             Set(ByVal Value As Date)
-                _CreatedDate = Value
+                _CreatedDate = CleanupInput(Value)
             End Set
         End Property
 
@@ -690,7 +690,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _OrderID
             End Get
             Set(ByVal Value As Integer)
-                _OrderID = Value
+                _OrderID = CleanupInput(Value)
             End Set
         End Property
 
@@ -699,7 +699,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _CompanyName
             End Get
             Set(ByVal Value As String)
-                _CompanyName = Value
+                _CompanyName = CleanupInput(Value)
             End Set
         End Property
 
@@ -708,7 +708,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Extra1
             End Get
             Set(ByVal Value As String)
-                _Extra1 = Value
+                _Extra1 = CleanupInput(Value)
             End Set
         End Property
 
@@ -717,7 +717,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Extra2
             End Get
             Set(ByVal Value As String)
-                _Extra2 = Value
+                _Extra2 = CleanupInput(Value)
             End Set
         End Property
 
@@ -726,7 +726,7 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Extra3
             End Get
             Set(ByVal Value As String)
-                _Extra3 = Value
+                _Extra3 = CleanupInput(Value)
             End Set
         End Property
 
@@ -735,10 +735,17 @@ Namespace NEvoWeb.Modules.NB_Store
                 Return _Extra4
             End Get
             Set(ByVal Value As String)
-                _Extra4 = Value
+                _Extra4 = CleanupInput(Value)
             End Set
         End Property
 
+        Dim _objSecurity As New PortalSecurity
+        Private Function CleanupInput(input As String)
+            If _objSecurity Is Nothing Then
+                _objSecurity = New PortalSecurity
+            End If
+            Return _objSecurity.InputFilter(input, PortalSecurity.FilterFlag.NoScripting Or PortalSecurity.FilterFlag.NoMarkup)
+        End Function
 
 #End Region
 

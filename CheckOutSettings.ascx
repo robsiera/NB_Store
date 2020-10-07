@@ -9,6 +9,14 @@
             <asp:CheckBox ID="chkShowDiscountCol" runat="server" />
         </td>
     </tr>
+        <tr>
+        <td>
+            <dnn:label id="plTermsAndConditions" runat="server" controlname="plTermsAndConditions" suffix=":"></dnn:label>
+        </td>
+        <td>
+            <asp:CheckBox ID="chkTermsAndConditions" runat="server" />
+        </td>
+    </tr>
     <tr>
         <td>
             <dnn:label id="plShowShipMethod" runat="server" controlname="plShowShipMethod" suffix=":"></dnn:label>

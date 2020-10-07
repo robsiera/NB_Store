@@ -381,6 +381,7 @@ Namespace NEvoWeb.Modules.NB_Store
                                     val.Text = ""
                                     val.MaximumValue = _QtyLimit
                                     val.MinimumValue = 1
+                                    val.Type = ValidationDataType.Integer
                                     val = assignProperties(_aryTempl(lp), val, "val")
                                     val.ControlToValidate = "txtqty"
                                     AddHandler val.DataBinding, AddressOf QtyVal_DataBinding
@@ -1104,7 +1105,7 @@ Namespace NEvoWeb.Modules.NB_Store
             container = CType(hyp.NamingContainer, DataListItem)
             If _blnHasModuleEditPermissions Then
                 hyp.ImageUrl = "~/images/edit.gif"
-                hyp.NavigateUrl = NavigateURL(_TabID, _EditCtrlKey, "mid=" & _ModuleID, "ProdID=" & DataBinder.Eval(container.DataItem, "ProductID"), "RtnTab=" & _TabID.ToString, "PageIndex=" & _PageIndex.ToString, "CatID=" & _CatID.ToString, "SkinSrc=" & QueryStringEncode(DotNetNuke.Common.ResolveUrl("~/DesktopModules/NB_Store/Skins/Dark/Edit")))
+                hyp.NavigateUrl = NavigateURL(_TabID, _EditCtrlKey, "mid=" & _ModuleID, "ProdID=" & DataBinder.Eval(container.DataItem, "ProductID"), "RtnTab=" & _TabID.ToString, "PageIndex=" & _PageIndex.ToString, "CatID=" & _CatID.ToString, "skinsrc=" & QueryStringEncode(DotNetNuke.Common.ResolveUrl("~/DesktopModules/NB_Store/Skins/Dark/Edit")))
             Else
                 hyp.Visible = False
             End If

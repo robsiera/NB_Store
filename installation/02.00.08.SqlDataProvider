@@ -16,55 +16,55 @@ GO
 
 if not exists (select * from dbo.syscolumns where id=object_id(N'{databaseOwner}[{objectQualifier}NB_Store_ModelLang]') and name='Extra')
 	alter table {databaseOwner}{objectQualifier}NB_Store_ModelLang add Extra nvarchar(50) null
-GO
+go
 
 if not exists (select * from dbo.syscolumns where id=object_id(N'{databaseOwner}[{objectQualifier}NB_Store_SettingsText]') and name='HostOnly')
 	alter table {databaseOwner}{objectQualifier}NB_Store_SettingsText add HostOnly bit null
-GO
+go
 
 if not exists (select * from dbo.syscolumns where id=object_id('{databaseOwner}[{objectQualifier}NB_Store_Categories]') and name='ImageURL')
 	alter table {databaseOwner}{objectQualifier}NB_Store_Categories add ImageURL nvarchar(256) null
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_CategoriesListOrder')
    CREATE INDEX [IDX_NB_Store_CategoriesListOrder] ON {databaseOwner}{objectQualifier}NB_Store_Categories (ListOrder)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_OrdersOrderDate')
    CREATE INDEX [IDX_NB_Store_OrdersOrderDate] ON {databaseOwner}{objectQualifier}NB_Store_Orders (OrderDate)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductDocListOrder')
    CREATE INDEX [IDX_NB_Store_ProductDocListOrder] ON {databaseOwner}{objectQualifier}NB_Store_ProductDoc (ListOrder)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductImageListOrder')
    CREATE INDEX [IDX_NB_Store_ProductImageListOrder] ON {databaseOwner}{objectQualifier}NB_Store_ProductImage (ListOrder)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ModelUnitCost')
    CREATE INDEX [IDX_NB_Store_ModelUnitCost] ON {databaseOwner}{objectQualifier}NB_Store_Model (UnitCost)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductsProductRef')
    CREATE INDEX [IDX_NB_Store_ProductsProductRef] ON {databaseOwner}{objectQualifier}NB_Store_Products (ProductRef)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductsCreatedDate')
    CREATE INDEX [IDX_NB_Store_ProductsCreatedDate] ON {databaseOwner}{objectQualifier}NB_Store_Products (CreatedDate)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductLangProductName')
    CREATE INDEX [IDX_NB_Store_ProductLangProductName] ON {databaseOwner}{objectQualifier}NB_Store_ProductLang (ProductName)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ProductLangManufacturer')
    CREATE INDEX [IDX_NB_Store_ProductLangManufacturer] ON {databaseOwner}{objectQualifier}NB_Store_ProductLang (Manufacturer)
-GO
+go
 
 if not exists (select * from sys.indexes where name = 'IDX_NB_Store_ModelListOrder')
    CREATE INDEX [IDX_NB_Store_ModelListOrder] ON {databaseOwner}{objectQualifier}NB_Store_Model (ListOrder)
-GO
+go
 
 
 
@@ -904,7 +904,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime,
@@ -1024,7 +1024,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_ModelLang_U
 (
 @ModelID int,
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @XMLData xml,
 @Extra nvarchar(50)
 )
@@ -1322,7 +1322,6 @@ GO
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Products_GetSearchList]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Products_GetSearchList]
 GO
---~ SELECT INTO statement is not supported in this version of SQL Azure.
 
 
 
@@ -1467,7 +1466,6 @@ GO
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Products_GetSearchListSize]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Products_GetSearchListSize]
 GO
---~ SELECT INTO statement is not supported in this version of SQL Azure.
 
 
 
@@ -1651,3 +1649,5 @@ SET QUOTED_IDENTIFIER OFF
 GO
 SET ANSI_NULLS ON 
 GO
+
+

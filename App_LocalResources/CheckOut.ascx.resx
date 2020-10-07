@@ -159,6 +159,9 @@
   <data name="EmptyCart.Text" xml:space="preserve">
     <value>Your cart is empty.</value>
   </data>
+  <data name="TermsAndConditions.Text" xml:space="preserve">
+    <value>I have read and accepted the Terms and Conditions.</value>
+  </data>
   <data name="lblBillAddress.Text" xml:space="preserve">
     <value>Billing Address</value>
   </data>

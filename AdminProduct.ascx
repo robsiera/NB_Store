@@ -85,7 +85,7 @@
                                 <asp:Label ID="nlName" runat="server" Text="Name : "></asp:Label>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:TextBox ID="txtModelName" runat="server" Width="230" MaxLength="50" CssClass="textexp_name"
+                                <asp:TextBox ID="txtModelName" runat="server" Width="230" MaxLength="150" CssClass="textexp_name"
                                     Text='<%# DataBinder.Eval(Container, "DataItem.ModelName") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateColumn>

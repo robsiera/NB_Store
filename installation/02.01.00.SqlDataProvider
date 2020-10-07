@@ -54,11 +54,11 @@ CREATE TABLE {databaseOwner}[{objectQualifier}NB_Store_ProductRelated] (
 	CONSTRAINT [PK_NB_Store_ProductRelated] PRIMARY KEY  CLUSTERED 
 	(
 		[RelatedID]
-	)   
-) 
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
 GO
 
- CREATE  INDEX [IX_NB_Store_ProductRelated] ON {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]([ProductID]) 
+ CREATE  INDEX [IX_NB_Store_ProductRelated] ON {databaseOwner}[{objectQualifier}NB_Store_ProductRelated]([ProductID]) ON [PRIMARY]
 GO
 
 
@@ -574,7 +574,7 @@ CREATE   PROCEDURE {databaseOwner}[{objectQualifier}NEvoweb_NB_Store_Model_Updat
 @Barcode nvarchar(20),
 @ModelRef nvarchar(20),
 @Lang nchar(5),
-@ModelName nvarchar(50),
+@ModelName nvarchar(150),
 @QtyRemaining int,
 @QtyTrans int,
 @QtyTransDate datetime,

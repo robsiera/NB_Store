@@ -53,8 +53,8 @@ Namespace NEvoWeb.Modules.NB_Store
                 setAdminCookieValue(PortalId, "ProdID", ProdID.ToString)
 
 
-                If Not (Request.QueryString("SkinSrc") Is Nothing) Then
-                    _SkinSrc = Request.QueryString("SkinSrc")
+                If Not (Request.QueryString("skinsrc") Is Nothing) Then
+                    _SkinSrc = Request.QueryString("skinsrc")
                 End If
 
                 _CatID = -1

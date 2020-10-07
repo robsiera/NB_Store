@@ -45,8 +45,6 @@ Namespace NEvoWeb.Modules.NB_Store
 
         End Sub
 
-
-
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
                 If Not (Request.QueryString("OrdId") Is Nothing) Then
@@ -177,12 +175,12 @@ Namespace NEvoWeb.Modules.NB_Store
         End Sub
 
         Private Sub cmdPrintOrder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrintOrder.Click
-            Response.Write("<script>window.open('" & NavigateURL(TabId, "PrintOrder", "mid=" & ModuleId.ToString, "ORID=" & _OrdId.ToString & "&SkinSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootSkin & "/" & glbHostSkinFolder & "/" & "No Skin"), "ContainerSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootContainer & "/" & glbHostSkinFolder & "/" & "No Container"), "dnnprintmode=true") & "','_blank')</script>")
+            Response.Write("<script>window.open('" & NavigateURL(TabId, "PrintOrder", "mid=" & ModuleId.ToString, "ORID=" & _OrdId.ToString & "&skinsrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootSkin & "/" & glbHostSkinFolder & "/" & "No Skin"), "ContainerSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootContainer & "/" & glbHostSkinFolder & "/" & "No Container"), "dnnprintmode=true") & "','_blank')</script>")
             populateOrderView(_OrdId)
         End Sub
 
         Private Sub cmdPrintreceipt_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPrintreceipt.Click
-            Response.Write("<script>window.open('" & NavigateURL(TabId, "PrintOrder", "mid=" & ModuleId.ToString, "ORID=" & _OrdId.ToString & "&inv=1&SkinSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootSkin & "/" & glbHostSkinFolder & "/" & "No Skin"), "ContainerSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootContainer & "/" & glbHostSkinFolder & "/" & "No Container"), "dnnprintmode=true") & "','_blank')</script>")
+            Response.Write("<script>window.open('" & NavigateURL(TabId, "PrintOrder", "mid=" & ModuleId.ToString, "ORID=" & _OrdId.ToString & "&inv=1&skinsrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootSkin & "/" & glbHostSkinFolder & "/" & "No Skin"), "ContainerSrc=" & QueryStringEncode("[G]" & Skins.SkinInfo.RootContainer & "/" & glbHostSkinFolder & "/" & "No Container"), "dnnprintmode=true") & "','_blank')</script>")
             populateOrderView(_OrdId)
         End Sub
 
@@ -335,7 +333,6 @@ Namespace NEvoWeb.Modules.NB_Store
                 End If
 
                 SendEmailToClient(PortalId, GetClientEmail(PortalId, objInfo), "", objInfo, EmailTemplateName, GetClientLang(PortalId, objInfo))
-                UpdateLog("EMAILSENT : " & EmailTemplateName)
             End If
         End Sub
 
@@ -627,14 +624,26 @@ Namespace NEvoWeb.Modules.NB_Store
             objOInfo = objOCtrl.GetOrder(_OrdId)
             If Not objOInfo Is Nothing Then
                 If ddlStatus.Visible Then
-
+                    Dim oldStatus As Integer
                     If objOInfo.OrderStatusID <> ddlStatus.SelectedValue Then
                         isStatusChange = True
+                        oldStatus = objOInfo.OrderStatusID
                         objOInfo.OrderStatusID = ddlStatus.SelectedValue
                     End If
 
+                    If ddlStatus.SelectedValue = Constants.OrderStatus.Cancelled _
+                        AndAlso oldStatus = Constants.OrderStatus.Paymentnotverified Then
+                        'payment not ok, so revert the stock
+                        Dim objPCtrl As New ProductController
+                        objPCtrl.RemoveModelQtyTrans(objOInfo.OrderID)
+                    ElseIf ddlStatus.SelectedValue = Constants.OrderStatus.Cancelled _
+                        AndAlso oldStatus = Constants.OrderStatus.WaitingforBank Then
+                        Dim objPCtrl As New ProductController
+                        objPCtrl.RemoveModelQtyTrans(objOInfo.OrderID)
+                    End If
+
                     objOInfo.TrackingCode = txtTrackCode.Text
-                    If objOInfo.OrderStatusID = 40 And objOInfo.OrderNumber = "" Then
+                    If objOInfo.OrderStatusID = Constants.OrderStatus.PaymentOk And objOInfo.OrderNumber = "" Then
                         'payment is OK, so update ordernumber if blank
                         Dim UsrID As Integer = objOInfo.UserID
                         If UsrID = -1 Then UsrID = 0
@@ -718,7 +727,7 @@ Namespace NEvoWeb.Modules.NB_Store
                     End If
 
                     If objOInfo.AlreadyPaid < objOInfo.Total Then
-                        objOInfo.OrderStatusID = 90
+                        objOInfo.OrderStatusID = Constants.OrderStatus.WaitingforPayment
                     End If
 
                     Dim ElapsedHours As Double

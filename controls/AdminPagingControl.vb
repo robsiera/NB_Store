@@ -255,7 +255,7 @@ Namespace NEvoWeb.Modules.NB_Store
             Dim SSrc As String = ""
 
             If _SkinSrc <> "" Then
-                SSrc = "?SkinSrc=" & _SkinSrc
+                SSrc = "?skinsrc=" & QueryStringEncode(_SkinSrc)
             End If
 
             If QuerystringParams <> "" Then

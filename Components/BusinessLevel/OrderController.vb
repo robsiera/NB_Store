@@ -60,7 +60,7 @@ Namespace NEvoWeb.Modules.NB_Store
             objOInfo.PortalID = PortalID
             objOInfo.OrderDate = Now
             objOInfo.OrderID = -1
-            objOInfo.OrderStatusID = 10
+            objOInfo.OrderStatusID = Constants.OrderStatus.Incomplete
             objOInfo.UserID = UserID
             
             objOInfo = UpdateObjOrder(objOInfo)

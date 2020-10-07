@@ -17,6 +17,7 @@ Imports DotNetNuke.Common
 Imports DotNetNuke.Services.Exceptions
 Imports DotNetNuke.Services.Localization
 Imports System.Linq
+Imports System.Net
 Imports NEvoWeb.Modules.NB_Store.SharedFunctions
 Imports DotNetNuke.UI.Utilities
 
@@ -553,6 +554,13 @@ Namespace NEvoWeb.Modules.NB_Store
 
             ctlPagingControl.TotalRecords = ListSize
             ctlPagingControl.PageSize = PgSize
+            If PgSize > 0 And ctlPagingControl.Visible Then
+                If _CurrentPage > ((ListSize / PgSize) + 1) Then 'stop problem with invlid page number in url
+                    _CurrentPage = Convert.ToInt32((ListSize / PgSize))
+                    Response.StatusCode = HttpStatusCode.NotFound
+                    Response.Redirect("/404ErrorPage.aspx") ' redirect to 404 so robot picks it up.
+                End If
+            End If
             ctlPagingControl.CurrentPage = _CurrentPage
             ctlPagingControl.TabID = TabId
             ctlPagingControl.BorderWidth = 0
@@ -961,7 +969,7 @@ Namespace NEvoWeb.Modules.NB_Store
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
                 'can't add [, "RtnTab=" & _RtnTabID, "CatID=" & CatID, "currentpage=" & _CurrentPage"] to the add product action, because the create product button redirects, but needs to stay on the same tab. (To do this we need to change the AdminProduct control as well)
-                Actions.Add(GetNextActionID, Localization.GetString("AddProduct.Action", LocalResourceFile), Entities.Modules.Actions.ModuleActionType.AddContent, "", "", EditUrl("ProdId", "0", _EditCtrlKey, "RtnTab=" & TabId.ToString, "PageIndex=" & _PageIndex.ToString, "CatID=" & CatID.ToString, "SkinSrc=" & QueryStringEncode(DotNetNuke.Common.ResolveUrl("~/DesktopModules/NB_Store/Skins/Dark/Edit"))), False, DotNetNuke.Security.SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, Localization.GetString("AddProduct.Action", LocalResourceFile), Entities.Modules.Actions.ModuleActionType.AddContent, "", "", EditUrl("ProdId", "0", _EditCtrlKey, "RtnTab=" & TabId.ToString, "PageIndex=" & _PageIndex.ToString, "CatID=" & CatID.ToString, "skinsrc=" & QueryStringEncode(DotNetNuke.Common.ResolveUrl("~/DesktopModules/NB_Store/Skins/Dark/Edit"))), False, DotNetNuke.Security.SecurityAccessLevel.Edit, True, False)
                 Actions.Add(GetNextActionID, Localization.GetString("Options.Action", LocalResourceFile), "Options", "", "", EditUrl("Options"), False, DotNetNuke.Security.SecurityAccessLevel.Edit, True, False)
 
                 Return Actions
