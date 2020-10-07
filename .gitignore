@@ -1,0 +1,5 @@
+*.user
+*.suo
+.vs/
+obj/
+Providers/Gateway/GatewayPayPal/bin/
