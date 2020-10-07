@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GatewayPayPal", "GatewayPayPal.vbproj", "{DCDD7BE7-7587-4A82-BEB6-CAC98015147E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NB_Store", "..\..\..\NB_Store.vbproj", "{981AF709-BC75-4D90-84B0-34B66F5ED2A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCDD7BE7-7587-4A82-BEB6-CAC98015147E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCDD7BE7-7587-4A82-BEB6-CAC98015147E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCDD7BE7-7587-4A82-BEB6-CAC98015147E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCDD7BE7-7587-4A82-BEB6-CAC98015147E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{981AF709-BC75-4D90-84B0-34B66F5ED2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981AF709-BC75-4D90-84B0-34B66F5ED2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{981AF709-BC75-4D90-84B0-34B66F5ED2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{981AF709-BC75-4D90-84B0-34B66F5ED2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8126A9CF-FB62-491E-B055-BDF89B66251C}
+	EndGlobalSection
+EndGlobal
