@@ -118,6 +118,7 @@ Namespace NEvoWeb.Modules.NB_Store.Gateway
 
         Public Overrides Sub SetBankRemotePost(ByVal PortalID As Integer, ByVal OrderID As Integer, ByVal Lang As String, ByVal Request As System.Web.HttpRequest)
             Dim RPost As New RemotePost ' RemotePost class from NB_Store, this generates the re-direct html required.
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
 
             Dim GatewayParams As String = GetStoreSetting(PortalID, "sofort.gateway", "None")
             If GatewayParams <> "" Then
