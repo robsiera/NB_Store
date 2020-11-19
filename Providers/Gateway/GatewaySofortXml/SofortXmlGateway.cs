@@ -171,6 +171,8 @@ namespace Nevoweb.NBrightStore.Gateway
 
         public override void SetBankRemotePost(int PortalID, int OrderID, string Lang, System.Web.HttpRequest Request)
         {
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
             // RemotePost class from NB_Store, this generates the re-direct html required.
 
             // clear the bank gateway redirect, so if there is an error we donmt; redirect to the wrong gateway.
