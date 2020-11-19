@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="NotifyProvider.ashx.cs" Class="Nevoweb.NBrightStore.Gateway.SofortXmlNotify" %>

@@ -1,0 +1,46 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="NB_Store_GatewaySofortXml" type="Module" version="1.0.0">
+      <friendlyName>NB_Store_GatewaySofortXml</friendlyName>
+      <description>NB_Store_GatewaySofortXml</description>
+      <owner>
+        <name>Nevoweb</name>
+        <organization>Nevoweb</organization>
+        <url>www.nevoweb.com</url>
+        <email>info@nevoweb.com</email>
+      </owner>
+      <license />
+      <releaseNotes />
+      <components>
+        <component type="Module">
+          <desktopModule>
+            <moduleName>NB_Store_GatewaySofortXml</moduleName>
+            <foldername>NB_Store_GatewaySofortXml</foldername>
+            <businessControllerClass />
+            <supportedFeatures />
+            <moduleDefinitions />
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+			  <name>NBrightStore.GatewaySofortXml.dll</name>
+			  <sourceFileName>NBrightStore.GatewaySofortXml.dll</sourceFileName>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="File">
+          <files>
+            <basePath>DesktopModules\NB_Store_GatewaySofortXml</basePath>
+		 <file>
+          <name>readme.txt</name>
+         </file>
+		 <file>
+          <name>SOFORT-Banking_product.png</name>
+         </file>
+		</files>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
